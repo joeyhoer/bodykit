@@ -5,18 +5,23 @@
 
 ///
 /// Creates an input group
-/// Note that padding and border must be matched on the input and
+/// Note: The padding and border must be matched on the input and
 /// the input control
+/// Caution: Textual input elements may have a minimum height, so small
+/// line-heights may cause issues. This may be resolved by using `height`
+/// instead of `line-height`.
 ///
 /// @example
-/// input,
-/// button {
-///   padding: 0.5em 1em;
-///   border: 2px #ccc solid;
-/// }
+/// .input-group {
+///   input,
+///   button {
+///     padding: 0.5em 1em;
+///     border: 2px #ccc solid;
+///   }
 ///
-/// button {
-///   border-color: transparent;
+///   button {
+///     border-color: transparent;
+///   }
 /// }
 ///
 @mixin input-group

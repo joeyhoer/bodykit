@@ -129,12 +129,20 @@
 ///
 @mixin reset-fluid
 {
-    #{media-elements()},
-    input,
-    select,
-    textarea {
+    // Media elements have an intrinsic height
+    // allowing them to maintain apect ratio as they scale
+    // when height is set to `auto`
+    #{media-elements()} {
         max-width: 100%;
         height: auto;
+    }
+    select,
+    textarea,
+    input,
+    iframe,
+    embed,
+    object  {
+        max-width: 100%;
     }
 }
 

@@ -43,7 +43,7 @@
 
             @if $prop-type != string
                 and strip-unit($w) == 0 {
-                // Strip unit off  zero value
+                // Strip unit off zero value
                 $w: 0;
             }
 
