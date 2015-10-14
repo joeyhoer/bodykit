@@ -20,9 +20,18 @@
 .responsive-table td {
   display: table;
   table-layout: fixed;
-  width: 100%; }
-.responsive-table td:before {
-  display: table-cell; }
+  width: 100%;
+  border-collapse: separate;
+  box-sizing: border-box;
+  padding: 0; }
+  .responsive-table td[data-table-header]:before {
+    content: attr(data-table-header); }
+  .responsive-table td:before {
+    display: table-cell;
+    position: relative; }
+  .responsive-table td:after {
+    content: '';
+    display: block; }
 .responsive-table td:nth-of-type(1):before {
   content: "Header 1"; }
 .responsive-table td:nth-of-type(2):before {

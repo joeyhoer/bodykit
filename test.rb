@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require 'sass'
 require 'minitest/spec'
 require 'minitest/autorun'

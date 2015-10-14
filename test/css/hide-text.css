@@ -16,8 +16,9 @@
 
 .hide-text-indent {
   overflow: hidden;
-  text-indent: 100%;
-  white-space: nowrap; }
+  text-indent: 101%;
+  white-space: nowrap;
+  padding: 0; }
 
 .hide-text-font {
   font: 0/0 a;

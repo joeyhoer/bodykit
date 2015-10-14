@@ -1,6 +1,6 @@
 @import '../../src/bodykit';
 
-@include reset-border-box;
+@include reset-box-sizing;
 @include reset-semanticize;
 @include reset-vertical-alignment;
 @include reset-pointer;

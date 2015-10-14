@@ -102,7 +102,7 @@
 ///
 @mixin reset-textfield
 {
-    #{inputs-text-types()},
+    #{input-text-types()},
     textarea {
         border-style: solid;
         &:focus {

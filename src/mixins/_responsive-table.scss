@@ -45,7 +45,9 @@
       table-layout: fixed;
       width: 100%;
       border-collapse: separate;
-      border-spacing: $padding/2 0;
+      @if $padding {
+        border-spacing: $padding/2 0;
+      }
       box-sizing: border-box;
       padding: 0;
       padding-right: $padding;
@@ -62,7 +64,9 @@
         display: table-cell;
         padding: $padding;
         position: relative;
-        left: -$padding/2;
+        @if $padding {
+          left: -$padding/2;
+        }
         @content;
       }
 

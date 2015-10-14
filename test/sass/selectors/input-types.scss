@@ -1,7 +1,7 @@
 @import '../../../src/bodykit';
 
-#{text-inputs()} { /* All text inputs */ }
-#{text-inputs($exclude: (email, number))} { /* Exclude some text inputs */ }
+#{input-text-types()} { /* All text inputs */ }
+#{input-text-types($exclude: (email, number))} { /* Exclude some text inputs */ }
 
-#{button-inputs()} { /* All button inputs */ }
-#{button-inputs($exclude: submit)} { /* Exclude some button inputs */ }
+#{input-button-types()} { /* All button inputs */ }
+#{input-button-types($exclude: submit)} { /* Exclude some button inputs */ }
