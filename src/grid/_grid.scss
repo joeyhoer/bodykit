@@ -5,10 +5,6 @@
 
 $gutter: 0;
 
-@function is-percentage($num){
-    @return if( unit($num) == '%', true, false );
-}
-
 ///
 ///
 ///

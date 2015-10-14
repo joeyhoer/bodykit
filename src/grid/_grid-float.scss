@@ -6,41 +6,29 @@
 ///
 ///
 ///
-@mixin grid-float (
-    $columns,
-    $gutter: 0
+@mixin grid-float(
+  $columns,
+  $gutter: 0,
+  $auto-omega: false,
+  $direction: right
 ){
-    $gutters: $columns - 1;
-    $column-ratio: 1/($columns + ($gutter * $gutters));
-    $gutter-ratio: $column-ratio * $gutter;
+  $gutters: $columns - 1;
 
-    // $column-ratio: 1/$columns;
-    // $gutter-ratio: $gutter / $columns;
+  float: opposite-of($direction);
+  margin-#{$direction}: $gutter;
+
+  @if is-percentage($gutter) {
+    // Use calculate percentage based gutters
+    $column-ratio: (100 - ($gutter * $gutters)) / $columns;
+    width: $column-ratio;
+  }
+  @else {
+    // Use calc() for non-percentage based gutters
+    width: calc( ( 100% - #{$gutters * $gutter} ) / #{$columns} );
+  }
+
+  @if $gutter > 0 and $auto-omega {
     $nth: #{$columns}n;
-
-    width: percentage($column-ratio);
-    float: left;
-
-    @if $gutter-ratio > 0 {
-        margin-right: percentage($gutter-ratio);
-        &:last-child,
-        &:nth-child(#{$nth}) {
-            // We may want to float the last colum in each row right to prevent
-            // rounding errors from manifesting as extra pixels at the ends of rows
-            //float: right;
-
-            margin-right: 0;
-        }
-    }
-
-    // Hide rounding errors in "the middle"
-    &:nth-child(#{$nth}) {
-        float: right;
-    }
-
-    // Ensure each row is aligned properly
-    &:nth-child(#{$nth}+1) {
-        clear: right;
-    }
-
+    @include omega($nth, $direction);
+  }
 }

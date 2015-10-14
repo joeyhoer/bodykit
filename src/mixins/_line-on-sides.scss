@@ -14,8 +14,8 @@
 ///    `:after` psuedo elements. If "false", the content will be applied to the
 ///    element itself, allowing different values to be applied to `:before` and
 ///    `:after`.
-/// @content mixed The decoration that should be applied to the
-///    element. Generally the default properties that should be passed are:
+/// @content The decoration that should be applied to the element.
+///   Generally the default properties that should be passed are:
 ///    ```
 ///    background-position: 50%;
 ///    background-repeat: repeat-x;

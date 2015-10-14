@@ -98,3 +98,42 @@
 
   @error "Unknown unit `#{$unit}`.";
 }
+
+///
+/// Check if a number is even
+///
+/// @param {Number} $int - The number
+///
+/// @return {Bool}
+///
+@function is-even($int) {
+  @return $int % 2 == 0;
+}
+
+///
+/// Returns true if value is of unit type
+///
+/// @param {Number} $num - The value to check the unit of
+/// @param {String} $unit - The unit type check against
+///
+/// @return {Bool}
+///
+@function is-unit(
+  $num,
+  $unit
+){
+    @return if( unit($num) == $unit, true, false );
+}
+
+///
+/// Returns true if value is of percentage unit type
+///
+/// @param {Number} $num - The value to check the unit of
+///
+/// @return {Bool}
+///
+@function is-percentage(
+  $num
+){
+    @return is-unit($num, '%');
+}

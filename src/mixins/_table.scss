@@ -11,7 +11,9 @@
 /// @param {String|List} $thead [null] - Selector(s) of table header groups
 /// @param {String|List} $tfoot [null] - Selector(s) of table footer groups
 /// @param {String|List} $tbody [null] - Selector(s) of table row groups
-/// @param {String|List} $layout [auto] - The value of the table's layout property
+/// @param {String|List} $layout [null] - The value of the table's layout property
+/// @param {String|List} $border-collapse [collapse] - The value of the table's
+/// border-collapse property
 ///
 @mixin table(
     $td: null,
@@ -19,15 +21,13 @@
     $thead: null,
     $tfoot: null,
     $tbody: null,
-    $layout: null
+    $layout: null,
+    $border-collapse: collapse
 ){
 
     display: table;
-    border-collapse: collapse;
-
-    @if $layout != null {
-        table-layout: $layout;
-    }
+    border-collapse: $border-collapse;
+    table-layout: $layout;
 
     @if $td    != null { #{$td}    { display: table-cell } }
     @if $tr    != null { #{$tr}    { display: table-row } }

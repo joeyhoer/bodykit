@@ -6,7 +6,7 @@
 ///
 /// Hide text using one of a number of methods
 ///
-/// @param {String} $method [pseudo] - The method to use to hhide the text.
+/// @param {String} $method [pseudo] - The method to use to hide the text.
 /// Possible values include `pseudo`, `indent`, and `font`.
 ///
 @mixin hide-text(
@@ -24,8 +24,16 @@
         }
     }
     @elseif $method == indent {
-        text-indent: 100%;
+        // `text-indent: 100%` dosen't work well for buttons
+        // because their width is affected by the Shadow DOM
+        text-indent: 101%;
         white-space: nowrap;
+        // `text-indent`, accoring to the spec, "gives the amount of the indent
+        // as a percentage of the containing block's logical width."
+        // Meaning, spec compliant browsers, do not take padding into account
+        // when resolving `text-indent`, so `padding` must be removed.
+        // @see http://www.w3.org/TR/css3-text/#text-indent-property
+        padding: 0;
     }
     @elseif $method == font {
         font: 0/0 a;

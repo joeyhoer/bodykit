@@ -1,0 +1,48 @@
+////
+/// @group Mixins
+/// @author Joey Hoer
+////
+
+///
+/// Viewport sized typography with minimum value
+///
+/// @param {Number}   $min        - Minimum font size (px)
+/// @param {Number}   $font-size  - Viewport-based size
+///
+/// @example scss - minimum of 35px for a 5vw font size
+///  @include min-font-size(35px, 5vw);
+///
+@mixin min-font-size(
+  $min,
+  $font-size
+) {
+  $dimension: if(unit($font-size) == 'vh', 'height', 'width');
+
+  $min-breakpoint: $min / strip-unit($font-size) * 100;
+
+  @media (max-#{$dimension}: #{$min-breakpoint}) {
+    font-size: $min;
+  }
+}
+
+///
+/// Viewport sized typography with maximum value
+///
+/// @param {Number}   $max        - Maximum font size (px)
+/// @param {Number}   $font-size  - Viewport-based size
+///
+/// @example scss - maximum of 150px for a 5vw font size
+///  @include max-font-size(150px, 5vw);
+///
+@mixin max-font-size(
+  $max,
+  $font-size
+) {
+  $dimension: if(unit($font-size) == 'vh', 'height', 'width');
+
+  $max-breakpoint: $max / strip-unit($font-size) * 100;
+
+  @media (min-#{$dimension}: #{$max-breakpoint}) {
+    font-size: $max;
+  }
+}

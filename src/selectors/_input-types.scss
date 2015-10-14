@@ -38,7 +38,7 @@
 /// @param {List} $exclude [()] - The types to exclude
 /// @return {List} - A list of text-based input selectors
 ///
-@function text-inputs(
+@function input-text-types(
     $exclude: null
 ){
     $types: (
@@ -51,7 +51,7 @@
         url
     );
 
-    // Browser vendores may change the display of these types in the future
+    // Browser vendors may change the display of these types in the future
     $types: join($types, (
         color,
         date,
@@ -69,7 +69,7 @@
 
     $types: purge($types);
 
-    @return attribute-selectors(input, type, $types);
+    @return "input:not([type])", attribute-selectors(input, type, $types);
 }
 
 ///
@@ -79,7 +79,7 @@
 /// @param {List} $exclude [()] - The types to exclude
 /// @return {List} - A list of button-based input selectors
 ///
-@function button-inputs(
+@function input-button-types(
     $exclude: null
 ){
     $types: (

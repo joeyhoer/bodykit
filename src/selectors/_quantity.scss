@@ -1,0 +1,130 @@
+////
+/// @group Selectors
+/// @author Joey Hoer
+////
+
+///
+/// Select all children if parent contains exactly n children
+///
+/// @param {Number} $n - The number to match
+///
+/// @return {List} - A list of selectors
+///
+@function exactly(
+  $n,
+  $input: '& > '
+){
+  $selector-base: '#{$input}:nth-last-child(#{$n}):first-child';
+  @return '#{$selector-base}',
+          '#{$selector-base} ~ *';
+}
+
+///
+/// Select all children if parent contains more than n children
+///
+/// @param {Number} $n - The number to test against
+///
+/// @return {List} - A list of selectors
+///
+@function more-than(
+  $n,
+  $input: '& > '
+){
+  $selector-base: '#{$input}:nth-last-child(n+#{$n + 1})';
+  @return '#{$selector-base}',
+          '#{$selector-base} ~ *';
+}
+
+///
+/// Select all children if element contains less than n children
+///
+/// @param {Number} $n - The number to test against
+///
+/// @return {List} - A list of selectors
+///
+@function less-than(
+  $n,
+  $input: '& > '
+){
+  $selector-base: '#{$input}:nth-last-child(-n+#{$n - 1}):first-child';
+  @return '#{$selector-base}',
+          '#{$selector-base} ~ *';
+}
+
+///
+/// Select all children if element contains between x and y children (inclusive)
+///
+/// @param {Number} $start - The number to start with
+/// @param {Number} $end - The number to end with
+///
+/// @return {List} - A list of selectors
+///
+@function between(
+  $start,
+  $end,
+  $input: '& > '
+){
+  $selector-base: '#{$input}:nth-last-child(n+#{$start}):nth-last-child(-n+#{$end}):first-child';
+  @return '#{$selector-base}',
+          '#{$selector-base} ~ *';
+}
+
+///
+/// Select remaining children of a modulo operation
+///
+/// @param {Number} $mod - The modulo divisor
+/// @param {Bool} $keep-first [true] - Keep all children if divisor is
+/// greater than the number of children
+///
+/// @return {List} - A list of selectors
+///
+@function modulo(
+  $mod,
+  $keep-first: true,
+  $input: '& > '
+){
+ $selector: join((),(),comma);
+
+  @for $i from 1 through $mod {
+    $selector: append($selector, '#{$input}:nth-last-child(#{$i}):nth-child(#{$mod}n) ~ *');
+  }
+
+  @if not $keep-first {
+    $selector: append($selector, less-than($mod, $input: $input));
+  }
+
+  @return $selector;
+}
+
+///
+/// Select middle child
+///
+/// @param {Number} $max-children - The maximun number of children expected.
+/// NOTE: Be as specifc as possible, as the value directly correlates to the
+/// the length of the selector
+/// @param {String} $when-even ['both'] - The element to be deemed "middle" when an even
+/// number of children is present. Possible values: `before`, `after`, `both`, `none`
+///
+/// @return {List} - A list of selectors
+///
+@function middle-child(
+  $max-children,
+  $when-even: 'both',
+  $input: '& > '
+){
+  $selector: join((),(),comma);
+
+  @for $i from 1 through floor($max-children/2+1) {
+    $selector: append($selector, "#{$input}:nth-child(#{$i}):nth-last-child(#{$i})");
+
+    @if not in-list($when-even, ('before', 'none')) {
+      $selector: append($selector, "#{$input}:nth-child(#{$i}):nth-last-child(#{$i - 1})");
+    }
+
+    @if not in-list($when-even, ('after', 'none')) {
+      $selector: append($selector, "#{$input}:nth-child(#{$i}):nth-last-child(#{$i + 1})");
+    }
+  }
+
+  @return $selector;
+}

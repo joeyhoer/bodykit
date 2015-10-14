@@ -62,6 +62,21 @@
 }
 
 ///
+/// Display list items as a single row of table cells
+///
+/// @param {Bool} $no-margin [true] - If `true`, top and bottom margins will be
+///    removed from the list.
+///
+@mixin list-table(
+    $no-margin: true
+){
+
+  @include list-unstyled($no-margin);
+  @include table($td: "& > li");
+
+}
+
+///
 /// Punctuate list items
 ///
 /// @param {String} $divider [', '] - The divider to punctuate the list with
@@ -70,9 +85,9 @@
 ///    removed from the list.
 ///
 @mixin list-punctuated(
-  $divider: ', ',
-  $display: inline,
-  $no-margin: true
+    $divider: ', ',
+    $display: inline,
+    $no-margin: true
 ){
 
     @include list-unstyled($no-margin);
@@ -97,9 +112,7 @@
     $no-margin: true
 ){
 
-    @include list-unstyled($no-margin);
-
-    @include table($td: "& > li");
+    @include list-table($no-margin);
 
     & > li {
         vertical-align: middle;

@@ -68,9 +68,11 @@
 
     // @todo Add `unicode-range` and other properties
 
+    // Allow style and weight to be interchangeable
     @if index('italic' 'oblique', $weight) {
+        $tmp-style: $style;
         $style: $weight;
-        $weight: normal;
+        $weight: $tmp-style;
     }
 
     @font-face {

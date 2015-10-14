@@ -58,12 +58,17 @@ p:first-of-type {
 p:last-of-type {
   margin-bottom: 0; }
 
-audio, canvas, img, svg, video,
-input,
-select,
-textarea {
+audio, canvas, img, svg, video {
   max-width: 100%;
   height: auto; }
+
+select,
+textarea,
+input,
+iframe,
+embed,
+object {
+  max-width: 100%; }
 
 figure {
   margin: 0; }
@@ -131,12 +136,17 @@ p:first-of-type {
 p:last-of-type {
   margin-bottom: 0; }
 
-audio, canvas, img, svg, video,
-input,
-select,
-textarea {
+audio, canvas, img, svg, video {
   max-width: 100%;
   height: auto; }
+
+select,
+textarea,
+input,
+iframe,
+embed,
+object {
+  max-width: 100%; }
 
 figure {
   margin: 0; }
@@ -198,12 +208,17 @@ textarea {
   textarea:focus {
     outline: 0; }
 
-audio, canvas, img, svg, video,
-input,
-select,
-textarea {
+audio, canvas, img, svg, video {
   max-width: 100%;
   height: auto; }
+
+select,
+textarea,
+input,
+iframe,
+embed,
+object {
+  max-width: 100%; }
 
 figure {
   margin: 0; }

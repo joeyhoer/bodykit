@@ -4,63 +4,27 @@
 ////
 
 ///
-/// Remove last column's gutter
+/// Remove last column's gutter and clears the first element of the next row
 ///
+/// @param {Number} $nth - The index of the last column in the row
+/// @param {String} $direction [right] - The direction of the row
 ///
 @mixin omega(
-    $nth: block
+  $nth,
+  $direction: right
 ){
 
-    @if length($nth) == 1 {
-        @if $auto {
-            &:last-child {
-                margin-#{$direction}: 0;
-            }
-        }
+  &:last-child,
+  &:nth-child(#{$nth}) {
+    // We may want to float the last column in each row to
+    // the same direction to prevent rounding errors from
+    // manifesting as extra pixels at the ends of rows
+    // float: $direction;
+    margin-#{$direction}: 0;
+  }
 
-        @else if contains-display-value($nth) and $table == false {
-            margin-#{$direction}: 0;
-        }
-
-        @else {
-            @include nth-child($nth, $direction);
-        }
-    }
-
-    @else if length($nth) == 2 {
-        @if $auto {
-            &:last-child {
-                margin-#{$direction}: 0;
-            }
-        }
-
-        @else {
-            @include nth-child(nth($nth, 1), $direction);
-        }
-    }
-
-    @else {
-        @warn "Too many arguments passed to the omega() mixin.";
-    }
-}
-
-///
-/// Remove nth-child's gutter
-///
-///
-@mixin nth-child(
-    $nth,
-    $direction
-){
-    $opposite-direction: get-opposite-direction($direction);
-
-    &:nth-child(#{$nth}) {
-        margin-#{$direction}: 0;
-    }
-
-    @if type-of($nth) == number {
-        &:nth-child(#{$nth}+1) {
-            clear: $opposite-direction;
-        }
-    }
+  &:nth-child(#{$nth}+1) {
+    // Clear both is last column is floated differently
+    clear: unquote(opposite-of($direction));
+  }
 }

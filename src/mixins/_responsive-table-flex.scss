@@ -34,21 +34,18 @@
       display: block;
     }
 
-    // Hide table headers and footers
-    thead,
-    tfoot {
-      @include hide-visually;
+    /* Hide table headers and footers */
+    @if $hide {
+      thead,
+      tfoot {
+        @include hide-visually;
+      }
     }
 
     td {
-      display: table;
-      table-layout: fixed;
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: $padding/2 0;
+      display: flex;
       box-sizing: border-box;
-      padding: 0;
-      padding-right: $padding;
+      padding: $padding;
 
       // Automatically add "table headers" on columns that have
       // the data attribute defined
@@ -59,18 +56,14 @@
       }
 
       &:before {
-        display: table-cell;
-        padding: $padding;
+        // Prevent the content from making the "header" smaller
+        flex-shrink: 0;
+        padding: inherit;
         position: relative;
-        left: -$padding/2;
-        @content;
-      }
-
-      // Fixes bottom "padding" on wrapping content
-      &:after {
-        content: '';
-        display: block;
-        padding-bottom: $padding;
+        left: -$padding;
+        top: -$padding;
+        // Remove bottom padding
+        margin-bottom: -$padding*2;
       }
     }
 

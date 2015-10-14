@@ -8,6 +8,8 @@
   , 'helpers/number'
   , 'helpers/string'
   , 'helpers/colors'
+  , 'helpers/map'
+  , 'helpers/opposite'
   // , 'helpers/em'
 
   // Functions
@@ -19,6 +21,7 @@
   , 'selectors/media-elements'
   , 'selectors/class-prefix'
   , 'selectors/selected'
+  , 'selectors/quantity'
 
   // Box model
   , 'mixins/trbl'
@@ -39,7 +42,8 @@
   , 'mixins/triangle'
 
   // Responsive Elements
-  // , 'mixins/media'
+  , 'mixins/hd-media'
+  , 'mixins/media'
 
   // Miscellaneous
   , 'mixins/ad-infinitum'
@@ -66,5 +70,9 @@
   , 'mixins/line-on-sides'
   , 'mixins/justify'
   , 'mixins/text-space-collapse'
+  , 'mixins/min-max-font'
 
-  , 'grid/grid-float';
+  // Grid
+  , 'grid/omega'
+  , 'grid/grid-float'
+;

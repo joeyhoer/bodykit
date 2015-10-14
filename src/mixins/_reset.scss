@@ -6,7 +6,7 @@
 ///
 /// Set `border-box` on everything, allowing for module inheritance
 ///
-@mixin reset-border-box
+@mixin reset-box-sizing
 {
     :root {
         box-sizing: border-box;
@@ -77,7 +77,7 @@
 ///
 @mixin reset-button
 {
-    #{button-inputs()},
+    #{input-button-types()},
     button {
         background: transparent;
         border: 0;
@@ -102,7 +102,7 @@
 ///
 @mixin reset-textfield
 {
-    #{text-inputs()},
+    #{inputs-text-types()},
     textarea {
         border-style: solid;
         &:focus {
@@ -112,16 +112,26 @@
 }
 
 ///
+/// Remove top margin for first child and bottom margin from last child to
+/// prevent margin and padding stacking
+///
+@mixin reset-child-margins(
+  $child: '>'
+) {
+    #{$child}:first-child {
+        margin-top: 0;
+    }
+    #{$child}:last-child {
+        margin-bottom: 0;
+    }
+}
+
+///
 /// Some paragraph margins just get in the way
 ///
 @mixin reset-paragraph
 {
-    p:first-of-type {
-        margin-top: 0;
-    }
-    p:last-of-type {
-        margin-bottom: 0;
-    }
+    @include reset-child-margins(p);
 }
 
 ///
@@ -167,6 +177,16 @@
 }
 
 ///
+/// Reset anchor link overflow
+///
+@mixin reset-link-overflow
+{
+    a {
+        overflow-wrap: break-word;
+    }
+}
+
+///
 /// Print all the resets
 ///
 /// @param list $exclude [false] - A list of resets to be excluded
@@ -174,8 +194,8 @@
 @mixin reset(
     $exclude: false
 ){
-    @if not index($exclude, border-box) {
-        @include reset-border-box;
+    @if not index($exclude, box-sizing) {
+        @include reset-box-sizing;
     }
     @if not index($exclude, semanticize) {
         @include reset-semanticize;
@@ -206,5 +226,8 @@
     }
     @if not index($exclude, address) {
         @include reset-address;
+    }
+    @if not index($exclude, link) {
+        @include reset-link-overflow;
     }
 }
