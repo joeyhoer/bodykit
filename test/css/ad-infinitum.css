@@ -1,49 +1,58 @@
 .both {
-  padding-left: 99in;
-  padding-right: 99in;
-  margin-left: -99in;
-  margin-right: -99in; }
+  padding-left: calc((100vw - 100%) / 2);
+  padding-right: calc((100vw - 100%) / 2);
+  margin-left: calc(0% - (100vw - 100%) / 2);
+  margin-right: calc(0% - (100vw - 100%) / 2); }
 
 .border {
-  border-left: 99in transparent solid;
-  border-right: 99in transparent solid;
-  margin-left: -99in;
-  margin-right: -99in; }
+  border-left: transparent calc((100vw - 100%) / 2);
+  border-right: transparent calc((100vw - 100%) / 2);
+  margin-left: calc(0% - (100vw - 100%) / 2);
+  margin-right: calc(0% - (100vw - 100%) / 2); }
 
 .position {
-  padding-left: 99in;
-  padding-right: 99in;
+  padding-left: calc((100vw - 100%) / 2);
+  padding-right: calc((100vw - 100%) / 2);
   width: 100%;
   position: relative;
-  right: 99in;
+  right: calc((100vw - 100%) / 2);
   box-sizing: content-box; }
 
 .position-top {
-  padding-top: 99in;
+  padding-top: 100vh;
   position: relative;
-  bottom: 99in;
+  bottom: calc((100vw - 100%) / 2);
   box-sizing: content-box; }
 
 .x {
-  padding-left: 99in;
-  padding-right: 99in;
-  margin-left: -99in;
-  margin-right: -99in; }
+  padding-left: calc((100vw - 100%) / 2);
+  padding-right: calc((100vw - 100%) / 2);
+  margin-left: calc(0% - (100vw - 100%) / 2);
+  margin-right: calc(0% - (100vw - 100%) / 2); }
 
 .y {
-  padding-top: 99in;
-  padding-bottom: 99in;
-  margin-top: -99in;
-  margin-bottom: -99in; }
+  padding-top: 100vh;
+  padding-bottom: 100vh;
+  margin-top: -100vh;
+  margin-bottom: -100vh; }
 
 .top-right {
-  padding-top: 99in;
-  padding-right: 99in;
-  margin-top: -99in;
-  margin-right: -99in; }
+  padding-top: 100vh;
+  padding-right: calc((100vw - 100%) / 2);
+  margin-top: -100vh;
+  margin-right: calc(0% - (100vw - 100%) / 2); }
 
 .b-r {
-  padding-bottom: 99in;
-  padding-right: 99in;
-  margin-bottom: -99in;
-  margin-right: -99in; }
+  padding-bottom: 100vh;
+  padding-right: calc((100vw - 100%) / 2);
+  margin-bottom: -100vh;
+  margin-right: calc(0% - (100vw - 100%) / 2); }
+
+.t-l-b {
+  padding-top: 100vh;
+  padding-bottom: 100vh;
+  padding-left: calc((100vw - 100%) / 2);
+  margin-top: -100vh;
+  margin-bottom: -100vh;
+  margin-left: calc(0% - (100vw - 100%) / 2); }
+

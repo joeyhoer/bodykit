@@ -8,3 +8,4 @@
 .y { @include ad-infinitum($direction: y); }
 .top-right { @include ad-infinitum($direction: top right); }
 .b-r { @include ad-infinitum($direction: b r); }
+.t-l-b { @include ad-infinitum($direction: t l b); }
