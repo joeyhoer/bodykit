@@ -151,7 +151,7 @@
             $shorthand-properties: width color style;
             @for $i from 1 through 3 {
                 @if nth($shorthand, $i) == null {
-                    @include _trbl(nth($border-wcs, $i), border-#{nth($shorthand-properties, $i)});
+                    @include _trbl(nth($border-wcs, $i), unquote("border-#{nth($shorthand-properties, $i)}"));
                 }
             }
 
@@ -172,7 +172,7 @@
 ///
 /// @param {Number|List} $color - The border color(s) to be set
 ///
-@mixin border-color (
+@mixin border-color(
     $color
 ){
     @include _trbl($color, border-color);
@@ -196,7 +196,7 @@
 ///
 /// @param {Number|List} $width - The border width(s) to be set
 ///
-@mixin border-width (
+@mixin border-width(
     $width
 ){
     @include _trbl($width, border-width);

@@ -26,7 +26,7 @@
 
     $headers: ();
     @for $i from $from through $through {
-        $headers: append($headers, #{h}$i, comma);
+        $headers: append($headers, unquote("h#{$i}"), comma);
     }
 
     @return $headers;
