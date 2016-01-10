@@ -1,0 +1,11 @@
+.border-image-horizontal {
+  border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2" width="2" height="2" preserveAspectRatio="none"><polygon points="0 0 2 0 0 2 2 2"/></svg>') 0 50%;
+  border-width: 0 10px;
+  border-style: solid;
+  background-clip: padding-box; }
+
+.border-image-bottom {
+  border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="1" viewBox="0 0 2 1" preserveAspectRatio="none"><polygon points="1 1 2 0 0 0"/></svg>') 0 0 100%;
+  border-width: 0 0 10px;
+  border-style: solid;
+  background-clip: padding-box; }

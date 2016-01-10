@@ -3,6 +3,52 @@
 /// @author Joey Hoer
 ////
 
+// Create a four value trbl list
+@function _trbl(
+  $values,
+  $collapse: false
+){
+
+  // Store length for performance
+  $len: length($values);
+
+  // Initialize top, right, bottom, left
+  $t: nth($values, 1);
+  $r: $t;
+  $b: $t;
+  $l: $t;
+
+  // Set top, right, bottom, left based on input
+  @if $len >= 2 {
+      $r: nth($values, 2);
+      $l: $r;
+      @if $len >= 3 {
+          $b: nth($values, 3);
+          @if $len >= 4 {
+              $l: nth($values, 4);
+          }
+      }
+  }
+
+  $return: $t $r $b $l;
+
+  @if $collapse {
+    // Join top, right, bottom, left values as succinctly as possible
+    $return: $t;
+    @if $len == 4 and $r != $l {
+      $return: join($return, $r $b $l);
+    }
+    @elseif $len >= 3 and $t != $b {
+        $return: join($return, $r $b);
+    }
+    @elseif $len >= 2 and $t != $r {
+        $return: join($return, $r);
+    }
+  }
+
+  @return $return;
+}
+
 ///
 /// Prints top, right, bottom, left values for a given property.
 ///
@@ -27,7 +73,7 @@
 ){
 
     // Store length for performance
-    $len: length($trbl);
+    // $len: length($trbl);
 
     // If a list is passed in
     // @if $len == 1 {
@@ -66,40 +112,18 @@
         $suffix: str-slice($property, str-index($property, '-'), str-length($property));
     }
 
-    // Initialize top, right, bottom, left
+    $trbl: _trbl($trbl);
     $t: nth($trbl, 1);
-    $r: $t;
-    $b: $t;
-    $l: $t;
-
-    // Set top, right, bottom, left based on input
-    @if $len >= 2 {
-        $r: nth($trbl, 2);
-        $l: $r;
-        @if $len >= 3 {
-            $b: nth($trbl, 3);
-            @if $len >= 4 {
-                $l: nth($trbl, 4);
-            }
-        }
-    }
+    $r: nth($trbl, 2);
+    $b: nth($trbl, 3);
+    $l: nth($trbl, 4);
 
     // Print rule(s)
     @if not(in-list(null, $trbl))
         and $prefix != ''
         and $property != border {
 
-        // Join top, right, bottom, left values as succinctly as possible
-        $value: $t;
-        @if $len == 4 and $r != $l {
-            $value: join($value, $r $b $l);
-        }
-        @elseif $len >= 3 and $t != $b {
-            $value: join($value, $r $b);
-        }
-        @elseif $len >= 2 and $t != $r {
-            $value: join($value, $r);
-        }
+        $value: _trbl($trbl, true);
 
         // Use shorthand
         #{$property}: $value;

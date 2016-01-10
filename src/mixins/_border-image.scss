@@ -1,0 +1,43 @@
+////
+/// @group Mixins
+/// @author Joey Hoer
+////
+
+///
+/// Draw a border image
+///
+/// @param {List} $wcs - The width, color, and style (in any order)
+/// @param {List} $defaults [null] - A list of default width, color,
+///    and style values to inherit
+///
+/// @return {List} - The width, color, style
+///
+@mixin border-image(
+  $image,
+  $border-width: null
+){
+
+  $border-width: _trbl($border-width);
+  $slice: ();
+
+  // Calculate total of all border-width values
+  $total: list-sum($border-width);
+  @each $length in $border-width {
+      @if not is-true($length, true) {
+          // Set falesy values to zero
+          $slice: append($slice, 0);
+      }
+      @else {
+          // Calculate true values as a percentage of the total
+          $slice: append($slice, percentage($length/$total));
+      }
+  }
+
+  // Collapse border-image-slice value
+  $slice: _trbl($slice, true);
+
+  border-image: $image $slice;
+  @include border-width($border-width);
+  border-style: solid;
+  background-clip: padding-box;
+}
