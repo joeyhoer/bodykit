@@ -11,7 +11,14 @@
 /// @return {Bool} - The boonlean equivalent of the value
 ///
 @function is-true(
-    $value
+    $value,
+    $false-zero: false
 ){
-    @return if($value == null, false, $value and $value != null and $value != "" and $value != ());
+    @return if($value == null, false,
+      $value
+      and $value != null
+      and $value != ""
+      and $value != ()
+      and if($false-zero, $value != 0, true)
+    );
 }
