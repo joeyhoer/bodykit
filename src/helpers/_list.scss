@@ -100,7 +100,7 @@
 ///
 /// Removes duplicate values from $list
 ///
-/// @param {List} $list - The list to work on.
+/// @param {List} $list - The list
 /// @param {Bool} $recursive - If `true`, recursively search list
 ///
 /// @return {List} - The list with elements remove
@@ -117,6 +117,32 @@
     }
 
     @return $result;
+}
+
+///
+/// Sums up all values in `$list`, stripping unit if `$force` set to `true`.
+///
+/// @param {List} $list - This list
+/// @param {Bool} $force (false) - Enable/disable parseInt
+///
+/// @return {Number}
+///
+@function list-sum(
+  $list,
+  $force: false
+){
+  $result: 0;
+
+  @each $item in $list {
+      @if type-of($item) == number {
+          @if $force and unit($item) {
+              $item: strip-unit($item);
+          }
+          $result: $result + $item;
+      }
+  }
+
+  @return $result;
 }
 
 ///
@@ -139,7 +165,7 @@
 /// @return {List} - A list containing all the elements of `$list` after applying the
 ///    callback function to each one.
 ///
-@function list-walk (
+@function list-walk(
     $list,
     $callback,
     $args...
