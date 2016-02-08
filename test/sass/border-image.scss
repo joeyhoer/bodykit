@@ -7,3 +7,7 @@
 .border-image-bottom {
   @include border-image(url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="1" viewBox="0 0 2 1" preserveAspectRatio="none"><polygon points="1 1 2 0 0 0"/></svg>'), 0 0 10px);
 }
+
+.border-image-vertical-left-25 {
+  @include border-image(url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="2" viewBox="0 0 2 2" preserveAspectRatio="none"><circle r="1" cx="1" cy="1"/></svg>'), 10px 0 10px 10px, 25%);
+}

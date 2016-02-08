@@ -20,12 +20,13 @@
 /// Removes all false and null values from $list
 ///
 @function purge(
-    $list
+    $list,
+    $false-zero: false
 ){
     $result: ();
 
     @each $item in $list {
-        @if is-true($item) {
+        @if is-true($item, $false-zero) {
             $result: append($result, $item, list-separator($list));
         }
     }

@@ -14,29 +14,32 @@
 ///
 @mixin border-image(
   $image,
-  $border-width: null
+  $border-width: null,
+  $border-slice: null
 ){
 
   $border-width: _trbl($border-width);
-  $slice: ();
 
-  // Calculate total of all border-width values
-  $total: list-sum($border-width);
-  @each $length in $border-width {
+  @if $border-slice == null {
+    $border-slice: ();
+    // Calculate total of all border-width values
+    $total: list-sum($border-width);
+    @each $length in $border-width {
       @if not is-true($length, true) {
-          // Set falesy values to zero
-          $slice: append($slice, 0);
+        // Set falesy values to zero
+        $border-slice: append($border-slice, 0);
       }
       @else {
-          // Calculate true values as a percentage of the total
-          $slice: append($slice, percentage($length/$total));
+        // Calculate true values as a percentage of the total
+        $border-slice: append($border-slice, percentage($length/$total));
       }
+    }
   }
 
   // Collapse border-image-slice value
-  $slice: _trbl($slice, true);
+  $border-slice: _trbl($border-slice, true);
 
-  border-image: $image $slice;
+  border-image: $image $border-slice;
   @include border-width($border-width);
   border-style: solid;
   background-clip: padding-box;

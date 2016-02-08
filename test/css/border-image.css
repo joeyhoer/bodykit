@@ -9,3 +9,9 @@
   border-width: 0 0 10px;
   border-style: solid;
   background-clip: padding-box; }
+
+.border-image-vertical-left-25 {
+  border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="2" height="2" viewBox="0 0 2 2" preserveAspectRatio="none"><circle r="1" cx="1" cy="1"/></svg>') 25%;
+  border-width: 10px 0 10px 10px;
+  border-style: solid;
+  background-clip: padding-box; }
