@@ -1,0 +1,25 @@
+////
+/// @group Mixins
+/// @author Joey Hoer
+////
+
+///
+/// Give an element a responsive width without media queries
+///
+/// @param {Number} $breakpoint - The breakpoint
+/// @param {Number} $min-width - The width when above the breakpoint
+/// @param {Number} $max-width [100%] - The width when below the breakpoint
+///
+/// @link https://medium.freecodecamp.com/the-fab-four-technique-to-create-responsive-emails-without-media-queries-baf11fdfa848#.dtpllw1lf
+///
+@mixin queryless(
+  $breakpoint,
+  $min-width,
+  $max-width: 100%
+){
+  min-width: $min-width;
+  max-width: $max-width;
+  // 9999 is used to generate a number
+  // larger than the viewport width
+  width: calc((#{$breakpoint} - 100%) * 9999);
+}

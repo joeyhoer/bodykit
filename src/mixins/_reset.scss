@@ -140,8 +140,8 @@
 @mixin reset-fluid
 {
     // Media elements have an intrinsic height
-    // allowing them to maintain apect ratio as they scale
-    // when height is set to `auto`
+    // This allows them to maintain an apect ratio as they scale
+    // height must be set to `auto` (to overide the height attribute)
     #{media-elements()} {
         max-width: 100%;
         height: auto;

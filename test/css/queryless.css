@@ -1,0 +1,9 @@
+.two-to-one {
+  min-width: 50%;
+  max-width: 100%;
+  width: calc((800px - 100%) * 9999); }
+
+.two-to-four {
+  min-width: 25%;
+  max-width: 50%;
+  width: calc((800px - 100%) * 9999); }

@@ -1,0 +1,64 @@
+////
+/// @group Mixins
+/// @author Will Stone
+/// @link https://github.com/will-stone/waitanimate
+////
+
+///
+/// Converts a Sass map into a list of CSS properties and values
+///
+/// @param {Map} $properties - A CSS propertie-value map
+///
+@mixin parse-properties($properties) {
+  @each $k, $v in $properties {
+    #{$k}: #{$v}
+  }
+}
+
+///
+/// Generate an `@keyframes` block that executes at an interval
+///
+/// NOTE: The `animation-duration` must be set to a value equal to
+/// the interval value plus the duration, and the `animation-iteration-count`
+/// should be set to a value greater than one (1) when the animation is
+/// referenced.
+/// An `animation-delay` may be used to pause before the animation begins.
+///
+/// @param {String} $animation-name - The name of the `@keyframes` block
+/// @param {Map} $keyframes - The keyframe blocks where the map keys
+///   are keyframe selectors and the map values are a map of the keyframe's
+///   CSS properties and values.
+/// @param {Number} $duration - The intended animation duration (in seconds)
+/// @param {Number} $interval [0] - The amount of time to wait between iterations (in seconds)
+///
+@mixin interval-keyframes($options: ()) {
+
+  $options: map-merge((
+    interval: 0
+  ), $options);
+
+  $name: map-get($options, animation-name);
+  $keyframes: map-get($options, keyframes);
+  $keyframes-length: length($keyframes);
+  $duration: map-get($options, duration);
+  $interval: map-get($options, interval);
+  $i: 1;
+
+  @keyframes #{$name} {
+    @each $frame, $properties in $keyframes {
+      // Time-adjusted keyframes
+      #{$frame * $duration / ($duration + $interval)}% {
+        @include parse-properties($properties);
+      }
+
+      // Duplicating the last frame produces start-anchored intervals
+      @if $i == $keyframes-length and $interval > 0 {
+        100% {
+          @include parse-properties($properties);
+        }
+      }
+
+      $i: $i+1;
+    }
+  }
+}

@@ -2,7 +2,6 @@
     'settings'
 
   // Helpers
-
   , 'helpers/bool'
   , 'helpers/list'
   , 'helpers/number'
@@ -44,9 +43,11 @@
   // Responsive Elements
   , 'mixins/hd-media'
   , 'mixins/media'
+  , 'mixins/queryless'
 
   // Miscellaneous
   , 'mixins/ad-infinitum'
+  , 'mixins/breakout'
   , 'mixins/color-swap'
   , 'mixins/hide-visually'
   , 'mixins/hide-text'
@@ -71,6 +72,9 @@
   , 'mixins/justify'
   , 'mixins/text-space-collapse'
   , 'mixins/min-max-font'
+
+  // Animation
+  , 'mixins/interval-keyframes'
 
   // Grid
   , 'grid/omega'

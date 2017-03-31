@@ -1,0 +1,4 @@
+@import '../../src/bodykit';
+
+.omega { @include omega(2n); }
+.omega-left { @include omega(2n, left); }

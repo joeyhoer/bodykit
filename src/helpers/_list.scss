@@ -4,10 +4,25 @@
 ////
 
 ///
+/// Create a new list with a given seperator
+///
+/// @param {String} $sep - The seperator value ("space" or "comma")
+///
+/// @return {List} - Empty list with a given seperator
+///
+@function new-list(
+    $sep: comma
+){
+    @return join((),(),$sep);
+}
+
+///
 /// Checks if a value exists in a list
 ///
 /// @param {Mixed} $needle - The searched value
 /// @param {List} $haystack - The list
+///
+/// @return {Bool}
 ///
 @function in-list(
     $needle,

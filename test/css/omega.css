@@ -1,0 +1,9 @@
+.omega:last-child, .omega:nth-child(2n) {
+  margin-right: 0; }
+.omega:nth-child(2n+1) {
+  clear: left; }
+
+.omega-left:last-child, .omega-left:nth-child(2n) {
+  margin-left: 0; }
+.omega-left:nth-child(2n+1) {
+  clear: right; }

@@ -1,0 +1,4 @@
+@import '../../src/bodykit';
+
+.two-to-one { @include queryless(800px, 50%); }
+.two-to-four { @include queryless(800px, 25%, 50%);}

@@ -1,0 +1,12 @@
+@import '../../src/bodykit';
+
+@include interval-keyframes((
+  animation-name: 'animate',
+  interval: 3,
+  duration: 1,
+  keyframes: (
+      0: ( opacity: 0 ),
+     50: ( opacity: 1 ),
+    100: ( opacity: 0 )
+  )
+));
