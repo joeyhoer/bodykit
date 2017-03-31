@@ -9,7 +9,7 @@ Bodykit is a Sass library, designed to be style agnostic, providing developers w
 
 After adding a new mixin, create a test in the `test/sass` directory and run the following command to generate an output file:
 
-    echo $new-mixin | sass --scss --sourcemap=none test/sass/$1.scss:test/css/$1.css
+    echo $new-mixin | xargs -I% sass --scss --sourcemap=none test/sass/%.scss:test/css/%.css
 
 **Note:** `$new-mixin` is the filename of the new mixin.
 

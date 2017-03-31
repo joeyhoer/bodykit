@@ -73,7 +73,6 @@
 @mixin border(
     $borders...
 ){
-
     // Store length for performance
     $len: length($borders);
 
@@ -94,14 +93,11 @@
     }
     $defaults: _parse-wcs(nth($borders, $i));
 
-
     // Parse all borders
     $borders: list-walk($borders, _parse-wcs, $defaults);
 
-
     // Attempt to use the `border` shorthand
     @if not in-list(null, $borders) {
-
         // Separate shorthand properties
         $border-wcs: () () ();
 
@@ -117,14 +113,11 @@
                     );
                 }
             }
-
         }
 
         // Create shorthand property
         $shorthand: ();
-
         @for $i from 1 through 3 {
-
             $shorthand-values: nth($border-wcs, $i);
 
             // If there is only one unique value, it can be added to the
@@ -142,28 +135,23 @@
 
             // If `border: 0`, omit `style`
             border: replace-nth($shorthand, 3, null);
-
         }
         @else {
-
             // Print `border(-*)` shorthand properties as necessary
             border: $shorthand;
             $shorthand-properties: width color style;
             @for $i from 1 through 3 {
                 @if nth($shorthand, $i) == null {
-                    @include _trbl(nth($border-wcs, $i), border-#{nth($shorthand-properties, $i)});
+                    @include _trbl(nth($border-wcs, $i),
+                                   "border-#{nth($shorthand-properties, $i)}");
                 }
             }
-
         }
     }
     @else {
-
         // Print `border-[side]` shorthand properties
         @include _trbl($borders, border);
-
     }
-
 }
 
 ///
