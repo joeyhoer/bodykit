@@ -1,3 +1,4 @@
 @import '../../src/bodykit';
 
 .clearfix { @include clearfix; }
+.clearfix-contain { @include clearfix($contain-margins: true); }

@@ -6,19 +6,21 @@
 ///
 /// Clearfix: contain floats
 ///
-/// For modern browsers
-/// 1. The use of `table` rather than `block` is only necessary if using
-///    `:before` to contain the top-margins of child elements.
+/// @param {Bool} $contain-margins [false] - If set to true, the clearfix will
+///    contain the margins of child elements, by using `display: table`
 ///
-@mixin clearfix
-{
-    &:before,
-    &:after  {
-        content: '';
-        display: table; // 1 //
-    }
+/// @link http://cssmojo.com/the-very-latest-clearfix-reloaded/
+///
+@mixin clearfix(
+    $contain-margins: false
+){
+    $display: if($contain-margins, table, block);
 
-    &:after {
-        clear: both;
+    // The below must remain part of the selector
+    #{if($contain-margins, '&::before,', '')}
+    &::after  {
+      content: '';
+      display: $display;
+      clear: both;
     }
 }

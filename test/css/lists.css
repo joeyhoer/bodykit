@@ -17,10 +17,9 @@
   padding-left: 0;
   margin-top: 0;
   margin-bottom: 0; }
-  .list-float:before, .list-float:after {
+  .list-float::after {
     content: '';
-    display: table; }
-  .list-float:after {
+    display: block;
     clear: both; }
   .list-float > li {
     float: left; }

@@ -1,5 +1,9 @@
-.clearfix:before, .clearfix:after {
+.clearfix::after {
   content: '';
-  display: table; }
-.clearfix:after {
+  display: block;
+  clear: both; }
+
+.clearfix-contain::before, .clearfix-contain::after {
+  content: '';
+  display: table;
   clear: both; }
