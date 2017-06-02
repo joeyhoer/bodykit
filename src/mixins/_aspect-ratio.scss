@@ -4,6 +4,21 @@
 ////
 
 ///
+/// Converts a ratio to a padding percentage
+/// This is used to create (or overwrite) a fluid aspect ratio
+///
+/// @param {Number} $ratio - The ratio of width to height.
+///    Photos and videos usually come in 4/3 or 16/9 ratios.
+/// @param {String} $side [bottom] - The side to which the padding will be applied
+///    (top or bottom)
+///
+@mixin ratio-to-padding(
+    $ratio,
+    $side: bottom
+){
+    padding-#{$side}: percentage(1 / $ratio);
+}
+///
 /// Give an element a fixed aspect ratio.
 ///
 /// NOTE: Direct descendans will overflow the container and, thus, be hidden.
@@ -13,40 +28,51 @@
 ///
 /// @param {Number} $ratio - The ratio of width to height.
 ///    Photos and videos usually come in 4/3 or 16/9 ratios.
-/// @param {String} $element [:after] - The element to use to create
+/// @param {String} $element [::after] - The element to use to create
 ///    the aspect ratio.
 /// @param {Bool} $stretch [true] - If `true`, direct descendants will be
 ///    stretched over the container
-/// @param {Bool} $overwrite [false] - If `true`, only the bottom padding
-///    of the element will be printed. Used to overwrite an existing aspect ratio
-///    in responsive layouts
 ///
 @mixin aspect-ratio(
     $ratio,
-    $element: ":after",
-    $stretch: true,
-    $overwrite: false
+    $element: "::after",
+    $stretch: true
 ){
-    @if not $overwrite {
-        position: relative;
-        overflow: hidden;
+    position: relative;
+    overflow: hidden;
 
-        &#{$element} {
-            content: '';
-            display: block;
-            height: 0;
-            padding-bottom: percentage(1 / $ratio);
-        }
+    &#{$element} {
+        content: '';
+        display: block;
+        height: 0;
+        @include ratio-to-padding($ratio);
+    }
 
-        @if $stretch {
-            & > * {
-                @include absolute(0);
-            }
+    @if $stretch {
+        & > * {
+            @include absolute(0);
         }
     }
-    @else {
-        &#{$element} {
-            padding-bottom: percentage(1 / $ratio);
-        }
+}
+
+///
+/// Give an element a minimum aspect ratio.
+///
+/// NOTE: Content may extend beyond the container, which will cause the
+/// container to grow vertically, changing the aspect ratio
+///
+/// @param {Number} $ratio - The ratio of width to height.
+///    Photos and videos usually come in 4/3 or 16/9 ratios.
+///
+/// @link http://keithjgrant.com/posts/2017/03/aspect-ratios/
+///
+@mixin minimum-aspect-ratio(
+    $ratio
+){
+    @include clearfix;
+    &::before {
+        content: '';
+        float: right;
+        @include ratio-to-padding($ratio);
     }
 }

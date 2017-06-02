@@ -1,3 +1,6 @@
 @import '../../src/bodykit';
 
-.aspect-ratio-3-4 { @include aspect-ratio(3/4); }
+.aspect-ratio-4-3 { @include aspect-ratio(4/3); }
+.aspect-ratio-1-1-no-stretch { @include aspect-ratio(1, $stretch: false); }
+.aspect-ratio-min-16-9 { @include minimum-aspect-ratio(16/9); }
+.aspect-ratio-overwrite::before { @include ratio-to-padding(2/1); }
