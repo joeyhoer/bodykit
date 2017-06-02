@@ -33,11 +33,16 @@
 }
 
 ///
-/// Remove the gap between images, videos, audio and canvas and the bottom of
-/// their containers: h5bp.com/i/440
+/// Remove the gap between elements and the bottom of their containers
+/// Applies to images, videos, embedded objects
+/// @link h5bp.com/i/440
 ///
 @mixin reset-vertical-alignment
 {
+    textarea,
+    iframe,
+    embed,
+    object,
     #{media-elements()} {
         vertical-align: middle;
     }
